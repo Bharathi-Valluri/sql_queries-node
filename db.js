@@ -6,15 +6,15 @@ const client = new Client({
   password: 'postgres',
   port: 5432
 })
-
 client.connect(function (err) {
   if (err) throw err
   console.log('Connected!')
   var sql =
-    'CREATE TABLE customers (id SERIAL PRIMARY KEY,name VARCHAR(255), address VARCHAR(255))'
+    'CREATE TABLE IF NOT EXISTS customers (id SERIAL PRIMARY KEY,name VARCHAR(255), address VARCHAR(255))'
   client.query(sql, function (err, result) {
     if (err) throw err
     console.log('Table created')
   })
 })
+
 module.exports = { client }
